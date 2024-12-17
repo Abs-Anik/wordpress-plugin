@@ -1,4 +1,7 @@
 <?php
+ if ( !defined( 'ABSPATH' ) ) {
+    exit;
+ }
 class AB_Three_Admin_Menu {
     public function __construct() {
         add_action('admin_menu', array($this, 'admin_menu') );
