@@ -15,9 +15,11 @@ class Academy_Batch_Three {
     private static $instance;
 
     private function __construct() {
-        add_filter('the_content', array($this, 'the_content_callback'));
-        add_action('wp_footer', array($this, 'wp_footer'));
-        add_filter('body_class', array($this, 'body_class'), 10, 2);
+        // add_filter('the_content', array($this, 'the_content_callback'));
+        // add_action('wp_footer', array($this, 'wp_footer'));
+        // add_filter('body_class', array($this, 'body_class'), 10, 2);
+        $this->define_constants();
+        $this->load_classes();
     }
 
     public static function get_instance() {
@@ -55,6 +57,16 @@ class Academy_Batch_Three {
         print_r( $classes);
         $classes[] = 'my-image-class';
         return $classes;
+    }
+
+    private function define_constants () {
+        define('AB_THREE_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
+    }
+
+    private function load_classes () {
+        require_once AB_THREE_PLUGIN_PATH . 'includes/Admin_Menu.php';
+
+        new AB_Three_Admin_Menu();
     }
 }
 
